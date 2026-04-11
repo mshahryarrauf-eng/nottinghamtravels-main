@@ -26,7 +26,7 @@ export default async function ReligiousTourPage() {
   const tours = await getTours();
 
   return (
-    <main className="mt-10">
+    <main className="">
       <ReligiousTourHero />
       <ReligiousTourFiltersClient initialTours={tours} />
     </main>
