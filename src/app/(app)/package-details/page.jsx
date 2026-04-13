@@ -44,5 +44,6 @@ export const metadata = {
 import { PackageDetails } from '@/components';
 
 export default function PackagesDetails() {
-  return <><PackageDetails /></>;
+  return <>
+  <div className='pt-10 '><PackageDetails /></div></>;
 }

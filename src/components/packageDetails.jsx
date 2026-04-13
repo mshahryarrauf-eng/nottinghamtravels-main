@@ -115,7 +115,7 @@ function GuestCard({
   const [isOpen, setIsOpen] = useState(index === 0);
 
   return (
-    <div className="border p-4 rounded-lg bg-gray-50 mb-2">
+    <div className="border p-4 rounded-lg bg-gray-50 mb-2s">
       {/* Header with toggle */}
       <div className="flex justify-between items-center mb-2 cursor-pointer">
         <h3 className="font-medium text-gray-700">Guest {index + 1}</h3>
