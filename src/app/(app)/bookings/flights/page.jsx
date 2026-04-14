@@ -18,6 +18,22 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 
+// Airline mapping
+const airlineNames = {
+  EY: "Etihad Airways",
+  EK: "Emirates",
+  QR: "Qatar Airways",
+  BA: "British Airways",
+  PK: "Pakistan International Airlines",
+  TK: "Turkish Airlines",
+  GF: "Gulf Air"
+};
+
+// Helper
+function getAirlineName(code) {
+  return airlineNames[code] || code;
+}
+
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
 // ─── Ref resolver ─────────────────────────────────────────────────────────────
@@ -77,7 +93,6 @@ function parseItinerary(itin, data) {
     lastTicketDate: fare?.lastTicketDate,
   };
 }
-
 // ─── Leg row ──────────────────────────────────────────────────────────────────
 function LegRow({ leg }) {
   return (
@@ -105,21 +120,30 @@ function LegRow({ leg }) {
   );
 }
 
+
+
 // ─── Flight card ──────────────────────────────────────────────────────────────
 function FlightCard({ itin, index, onSelect }) {
   const [expanded, setExpanded] = useState(false);
   return (
+    
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: Math.min(index * 0.04, 0.6) }}
       className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow overflow-hidden"
     >
+
       <div className="p-5">
         <div className="flex items-start gap-4">
-          <div className="flex-shrink-0 h-10 w-10 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center">
-            <span className="text-xs font-bold text-gray-600">{itin.carrier}</span>
-          </div>
+          <div className="p-6 flex-shrink-0 h-10 w-10 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center">
+<div className="text-center leading-tight ">
+  <p className="text-xs font-semibold  text-gray-800 truncate max-w-[80px]">
+    {getAirlineName(itin.carrier)}
+  </p>
+  <p className="text-[10px] text-black">
+{getAirlineName(itin.carrier)}  </p>
+</div>          </div>
           <div className="flex-1 space-y-3 min-w-0">
             {itin.legs.map((leg, i) => (
               <div key={i}>
@@ -477,8 +501,8 @@ function BookingModal({ itin, searchParams, onClose }) {
                   <span className="text-gray-900">{itin.currency} {itin.totalPrice.toFixed(2)}</span>
                 </div>
                 <div className="flex items-center justify-between text-xs text-gray-400">
-                  <span>Carrier</span><span>{itin.carrier}</span>
-                </div>
+<span>Carrier</span>
+<span>{getAirlineName(itin.carrier)}</span>                </div>
               </div>
               <button onClick={onClose}
                 className="w-full py-3.5 rounded-xl bg-gray-900 text-white text-sm font-semibold hover:bg-gray-700 transition">
