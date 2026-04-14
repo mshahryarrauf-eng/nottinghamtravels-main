@@ -138,3 +138,10 @@ export async function PATCH(req) {
     return NextResponse.json({ error: err.message }, { status: 500 });
   }
 }
+
+//Need to work on followings: 
+//1) FlightBooking validation failed: passengers.0: Cast to [string] failed for value "[\n' + ' {\n' + " title: 'Mr',\n" + " firstName: 'Shahryar',\n" + " lastName: 'Rauf',\n" + " type: 'Adult'\n" + ' }\n' + ']" (type string) at path "passengers.0" because of "CastError"
+//This Error Fixing
+
+//2) Filters not working, fix that
+//3) When we type the Code or City name, it should show it as well
