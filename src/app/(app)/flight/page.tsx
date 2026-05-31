@@ -1,4 +1,14 @@
+
 import { buildMetadata } from "@/lib/seo";
+import Hero from "@/app/components/home/hero";
+import TopDestination from "@/app/components/home/topDestination";
+import Highlights from "@/app/components/highlights"
+import { OfferedAirlinesSection } from "@/app/components/airlines/offeredAirlineSections";
+import HomeOffers from "@/app/components/home/homeOffer";
+import ScrollPopupForm from "@/app/components/home/scrollPopupForm";
+import { connectDB } from "@/lib/db";
+import Offer from "@/models/offer";
+
 
 export const metadata = buildMetadata({
   title: "Search & Book Cheap Flights",
@@ -12,14 +22,6 @@ export const metadata = buildMetadata({
   path: "/flight",
 });
 
-import Hero from "@/app/components/home/hero";
-import TopDestination from "@/app/components/home/topDestination";
-import Highlights from "@/app/components/highlights"
-import { OfferedAirlinesSection } from "@/app/components/airlines/offeredAirlineSections";
-import HomeOffers from "@/app/components/home/homeOffer";
-import ScrollPopupForm from "@/app/components/home/scrollPopupForm";
-import { connectDB } from "@/lib/db";
-import Offer from "@/models/offer";
 
 function parseCategory(raw) {
   if (Array.isArray(raw)) return raw;
