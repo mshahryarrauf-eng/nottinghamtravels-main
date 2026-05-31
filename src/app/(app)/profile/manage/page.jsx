@@ -1,3 +1,6 @@
+
+"use client";
+
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
@@ -7,7 +10,6 @@ export const metadata = buildMetadata({
   noIndex: true,
 });
 
-"use client";
 
 import { useState } from "react";
 import { Camera } from "lucide-react";
