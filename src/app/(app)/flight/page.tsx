@@ -1,19 +1,11 @@
-
 import { buildMetadata } from "@/lib/seo";
-import Hero from "@/app/components/home/hero";
-import TopDestination from "@/app/components/home/topDestination";
-import Highlights from "@/app/components/highlights"
-import { OfferedAirlinesSection } from "@/app/components/airlines/offeredAirlineSections";
-import HomeOffers from "@/app/components/home/homeOffer";
-import ScrollPopupForm from "@/app/components/home/scrollPopupForm";
 import { connectDB } from "@/lib/db";
 import Offer from "@/models/offer";
-
+import FlightsPage from "@/app/components/fullComponent/FlightsPage";
 
 export const metadata = buildMetadata({
   title: "Search & Book Cheap Flights",
-  description:
-    "Search hundreds of airlines to find the cheapest flights from the UK. Book direct, one-way, or return flights with ATOL protection — guaranteed best price.",
+  description: "Search hundreds of airlines to find the cheapest flights from the UK. Book direct, one-way, or return flights with ATOL protection — guaranteed best price.",
   keywords: [
     "cheap flights UK", "flight search", "book flights online",
     "direct flights", "return flights", "one way flights",
@@ -21,7 +13,6 @@ export const metadata = buildMetadata({
   ],
   path: "/flight",
 });
-
 
 function parseCategory(raw) {
   if (Array.isArray(raw)) return raw;
@@ -67,18 +58,7 @@ async function getFeaturedOffers() {
   }
 }
 
-export default async function Home() {
+export default async function Page() {
   const featuredOffers = await getFeaturedOffers();
-
-  return (
-    <div>
-      <Hero />
-      <TopDestination />
-      <Highlights />
-      {featuredOffers.length > 0 && <HomeOffers offers={featuredOffers} />}
-      <OfferedAirlinesSection />
-      {/* Scroll-triggered popup — client component, renders after 50% scroll */}
-      <ScrollPopupForm />
-    </div>
-  );
+  return <FlightsPage featuredOffers={featuredOffers} />;
 }
