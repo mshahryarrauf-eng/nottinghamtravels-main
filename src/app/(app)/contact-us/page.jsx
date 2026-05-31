@@ -1,3 +1,5 @@
+"use client";
+
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
@@ -11,7 +13,6 @@ export const metadata = buildMetadata({
   path: "/contact-us",
 });
 
-"use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import {

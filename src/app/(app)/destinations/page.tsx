@@ -1,3 +1,5 @@
+"use client"
+
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
@@ -12,7 +14,6 @@ export const metadata = buildMetadata({
   path: "/destinations",
 });
 
-"use client"
 
 import { motion } from "framer-motion"
 import DestinationGrid from "@/app/components/destinations/destinationGrid"
