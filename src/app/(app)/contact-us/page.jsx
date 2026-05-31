@@ -1,5 +1,5 @@
 import { buildMetadata } from "@/lib/seo";
-import ContactUs from "./ContactUs";
+import ContactUs from "@/app/components/fullComponent/ContactUs";
 
 export const metadata = buildMetadata({
   title: "Contact Us",
