@@ -32,7 +32,7 @@ import {RoomDetails , HotelBooking} from '@/components';
 
 export default function BookingDetails() {
   return (
-    <div className="w-full px-6 py-4 grid grid-cols-1 lg:grid-cols-[60%_40%] gap-2">
+    <div className="w-full mt-32 px-6 py-4 grid grid-cols-1 lg:grid-cols-[60%_40%] gap-2">
       <>
         <HotelBooking />
       </>

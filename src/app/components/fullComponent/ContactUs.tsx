@@ -26,29 +26,30 @@ const ContactUs = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      subject: "",
-      message: "",
-    });
 
     try {
       setLoading(true);
       let response = await axios.post("/api/contact-us", formData);
       console.log(response);
       if (response.status === 201) {
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+        });
         showAlert(
           "success",
           "Thank you! Your message has been sent successfully."
         );
       }
     } catch (error) {
-      showAlert(
-        "error",
-        error.error || "An error occurred while sending your message."
-      );
+      const msg =
+        error?.response?.data?.error ||
+        error?.message ||
+        "An error occurred while sending your message.";
+      showAlert("error", msg);
       console.error(error);
     } finally {
       setLoading(false);
@@ -62,7 +63,7 @@ const ContactUs = () => {
     );
   }
   return (
-    <section className="bg-white text-gray-800 py-16 px-6 md:px-20">
+    <section className="bg-white mt-32 text-gray-800 py-16 px-6 md:px-20">
       <div className="max-w-4xl mx-auto">
         {/* Heading */}
         <motion.div
@@ -155,6 +156,7 @@ const ContactUs = () => {
               placeholder="Phone"
               value={formData.phone}
               onChange={handleChange}
+              required
               className="w-full border border-gray-300 rounded-lg pl-10 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </div>

@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { FaMinusCircle, FaCcVisa, FaCcMastercard } from 'react-icons/fa';
 import { loadStripe } from '@stripe/stripe-js';
 import {
@@ -22,6 +23,7 @@ export default function Booking() {
 }
 
 function BookingForm() {
+  const router = useRouter();
   const [guests, setGuests] = useState([{ title: '', firstName: '', lastName: '', type: 'Adult' }]);
   const [contact, setContact] = useState({ email: '', phone: '' });
   const [paymentMethod, setPaymentMethod] = useState('card');
@@ -158,6 +160,10 @@ function BookingForm() {
             if (tboRes.ok) {
               showAlert('success', ' booking completed successfully!');
               console.log('TBO Response:', tboResult);
+              sessionStorage.removeItem('bookingDetails');
+              sessionStorage.removeItem('hotelsData');
+              sessionStorage.removeItem('hotelSearchMeta');
+              router.push('/');
             } else {
               showAlert('error', ` booking failed: ${tboResult.error}`);
               console.error('TBO Error:', tboResult);

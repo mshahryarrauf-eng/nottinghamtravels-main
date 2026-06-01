@@ -11,7 +11,7 @@ export async function POST(req) {
     // TBO API body
     const body = {
       CityCode,
-      IsDetailedResponse,
+      IsDetailedResponse: "true",
       Language
     };
 

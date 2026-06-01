@@ -1,16 +1,13 @@
+import { buildMetadata } from "@/lib/seo";
+import HotelResultsPage from "@/app/components/fullComponent/HotelsResultsPage";
 
-import React from 'react';
+export const metadata = buildMetadata({
+  title: "Hotel Search Results",
+  description: "Browse and book hotels from your search results with Nottingham Travels.",
+  path: "/bookings/hotels",
+  noIndex: true,
+});
 
-export const metadata = {
-    title: 'Hajj & Umrah',
-};
-
-const MyHotels = () => {
-    return (
-        <>
-            <h1> My Hotels </h1>
-        </>
-    );
-};
-
-export default MyHotels;
+export default function Page() {
+  return <HotelResultsPage />;
+}

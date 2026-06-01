@@ -11,6 +11,7 @@ export async function POST(req) {
   try {
     await connectDB();
     const { name, email, phone, subject, message } = await req.json();
+    console.log("[contact-us POST] Received:", { name, email, phone, subject, message });
     const { valid, error } = validateContact({
       name,
       email,
@@ -19,6 +20,7 @@ export async function POST(req) {
       message,
     });
     if (!valid) {
+      console.log("[contact-us POST] Validation failed:", error);
       return new Response(JSON.stringify({ error }), { status: 400 });
     }
     const contact = await Contact.create({
@@ -28,6 +30,7 @@ export async function POST(req) {
       subject,
       message,
     });
+    console.log("[contact-us POST] Saved successfully:", contact._id);
     const response = new Response(
       JSON.stringify({
         message: "Contact registered successfully",
